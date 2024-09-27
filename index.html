@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Control Bar</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="main.css" />
+</head>
+
+<body class="bg-[#030303] w-full h-full">
+  <div class="fixed w-full h-full flex justify-center items-center">
+    <div id="controlBar" class="bg-[#2a2c33] icon m-auto rounded-full p-2 text-white animate-controlbar">
+      <div id="buttonContainer" class="flex flex-row gap-3">
+        <button
+          class="bg-[#3f4149] p-3 rounded-full w-10 h-10 flex items-center justify-center hover:bg-[#51535c] cursor-pointer transition-all">
+          <svg xmlns="http://www.w3.org/2000/svg" class="fill-white w-10 h-10" viewBox="0 0 512 512">
+            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"
+              d="M256 112v288M400 256H112" />
+          </svg>
+        </button>
+        <button
+          class="bg-[#3f4149] p-3 rounded-full w-10 h-10 flex items-center justify-center hover:bg-[#51535c] cursor-pointer transition-all animate-hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" class="fill-white w-10 h-10" viewBox="0 0 512 512">
+            <path d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z" fill="none"
+              stroke="currentColor" stroke-miterlimit="10" stroke-width="32" />
+            <path d="M250.26 166.05L256 288l5.73-121.95a5.74 5.74 0 00-5.79-6h0a5.74 5.74 0 00-5.68 6z" fill="none"
+              stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" />
+            <path d="M256 367.91a20 20 0 1120-20 20 20 0 01-20 20z" />
+          </svg>
+        </button>
+
+        <button
+          class="bg-[#3f4149] p-3 rounded-full w-10 h-10 flex items-center justify-center hover:bg-[#51535c] cursor-pointer transition-all animate-hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" class="fill-white w-10 h-10" viewBox="0 0 512 512">
+            <path d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z" fill="none"
+              stroke="currentColor" stroke-miterlimit="10" stroke-width="32" />
+            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"
+              d="M336 256H176" />
+          </svg>
+        </button>
+
+
+        <button
+          class="bg-[#3f4149] p-3 rounded-full w-10 h-10 flex items-center justify-center hover:bg-[#51535c] cursor-pointer transition-all animate-hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" class="fill-white w-10 h-10" viewBox="0 0 512 512">
+            <path
+              d="M384 80H128c-26 0-43 14-48 40L48 272v112a48.14 48.14 0 0048 48h320a48.14 48.14 0 0048-48V272l-32-152c-5-27-23-40-48-40z"
+              fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32" />
+            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"
+              d="M48 272h144M320 272h144M192 272a64 64 0 00128 0" />
+          </svg>
+        </button>
+
+        <button id="searchButton"
+          class="bg-[#3f4149] p-3 rounded-full w-10 h-10 flex items-center justify-center hover:bg-[#51535c] cursor-pointer transition-all">
+          <svg xmlns="http://www.w3.org/2000/svg" class="fill-white w-10 h-10" viewBox="0 0 512 512">
+            <path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z" fill="none"
+              stroke="currentColor" stroke-miterlimit="10" stroke-width="32" />
+            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32"
+              d="M338.29 338.29L448 448" />
+          </svg>
+        </button>
+      </div>
+      <div id="search-bar" class="hidden-search flex-row items-center justify-center">
+        <input id="searchField" class="text-black px-4 py-2 rounded-md w-0"
+          placeholder="Search Issues, Statuses, Teams..." />
+
+        <button id="closeButton"
+          class="bg-[#3f4149] p-3 rounded-full w-10 h-10 flex items-center justify-center hover:bg-[#51535c] cursor-pointer transition-all">
+          <svg xmlns="http://www.w3.org/2000/svg" class="fill-white w-10 h-10" viewBox="0 0 512 512">
+            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"
+              d="M368 368L144 144M368 144L144 368" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const searchButton = document.getElementById('searchButton');
+    const searchInput = document.getElementById('search-bar');
+    const controlBar = document.getElementById('controlBar');
+    const buttonContainer = document.getElementById('buttonContainer');
+    const searchField = document.getElementById('searchField');
+    const closeButton = document.getElementById('closeButton');
+
+    searchButton.addEventListener('click', function () {
+      if (!searchInput.classList.contains('active')) {
+        // Expand the control bar for the search input
+        controlBar.style.width = '350px';
+        // Hide all buttons
+        buttonContainer.style.display = 'none';
+        // Show the search input
+        searchInput.style.display = 'flex';
+        searchInput.classList.add('active');
+        searchField.style.width = '300px'; // Set input width
+      } else {
+      }
+    });
+
+    closeButton.addEventListener('click', function () {
+      // Revert to original state
+      controlBar.style.width = '265px';
+      buttonContainer.style.display = 'flex';
+      searchInput.style.display = 'none';
+      searchInput.classList.remove('active');
+      searchField.style.width = '0'; // Reset input width
+    })
+  </script>
+</body>
+
+</html>
